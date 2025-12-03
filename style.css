@@ -102,7 +102,7 @@ main {
 
 .alert {
     font-size: 30px;
-    color: brown;
+    color: black;
     animation: blink 0.7s infinite;
     font-weight: bolder;
     text-align: center;
