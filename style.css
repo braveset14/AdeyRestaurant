@@ -19,7 +19,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-   
+   overflow-x: hidden;
     
 }
 
@@ -43,6 +43,7 @@ header img{
     height: 100px;
     justify-self: center;
     margin-top: 10px;
+    border-radius: 50%;
 }
 
 nav {
@@ -317,6 +318,10 @@ footer{
 .footer-logo{
     display: flex;
     gap: 20px;
+    justify-content: center;
+}
+.footer-logo img{
+    border-radius: 50%;
 }
 /* About page */
 .about-title{
