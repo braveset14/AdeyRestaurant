@@ -16,18 +16,38 @@
             <a href="menu.html" class="nav-button">Menu</a>
             <a href="about.html" class="nav-button">About</a>
             <a href="contact.html" class="nav-button">Contact</a>
-           <a href="reservation.html" class="nav-button">Reservation</a> 
-           <a href="testimonials.html" class="nav-button">Testimonials</a>
-            
+            <a href="reservation.html" class="nav-button">Reservation</a> 
+            <a href="testimonials.html" class="nav-button">Testimonials</a>
            </div>
-        </nav></header>
-     <div class="title">Adey Restaurant</div>
-    
-   <main>
-        <div class="home-container">
-            <div class="alert">We are now open 24/7 !!!</div>
-            <img class="home-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Injera_with_eight_kinds_of_stew.jpg/800px-Injera_with_eight_kinds_of_stew.jpg" alt="Ethiopian cuisine">
-            
+     </nav></header>
+     <main class="reservation-container">
+        <div class="contact-title">
+            <div class="reservation-title">Table Reservation</div>
+        </div>
+        
+        <div class="contact-form-section">
+            <form id="reservationForm">
+                <div class="form-group">
+                    <input type="text" id="resName" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="resGuests" placeholder="Guests (1-10)" min="1" max="10" required>
+                </div>
+                <div class="form-group">
+                    <input type="date" id="resDate" required>
+                </div>
+                <div class="form-group">
+                    <select id="resTime" required>
+                        <option value="" disabled selected>Select Time</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="14:00">2:00 PM</option>
+                        <option value="18:00">6:00 PM</option>
+                        <option value="20:00">8:00 PM</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Confirm Booking</button>
+            </form>
+            <div id="resMessage" class="hidden"></div>
         </div>
     </main>
     <footer>
@@ -68,7 +88,7 @@
     </div>
 </div>
 <div class="final-section">©2025 AdeyRestaurant. All rights reserved. <br>
-<button id="backToTop" class="hidden"> Back to top ↑</button></div>
+    <button id="backToTop" class="hidden"> Back to top ↑</button></div>
     </footer>
 </body>
 </html>

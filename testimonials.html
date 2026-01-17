@@ -6,6 +6,7 @@
     <title>About</title>
     <link rel="icon" href="image/Gemini_Generated_Image_12h9zs12h9zs12h9.png" type="image/png">
     <link rel="stylesheet" href="style.css">
+     <script src="script.js" defer></script>
 </head>
 <body class="about-bg">
     <header> <nav>
@@ -13,87 +14,74 @@
             <div class="links"><a href="index.html" class="nav-button">Home</a>
             <a href="menu.html" class="nav-button">Menu</a>
             <a href="about.html" class="nav-button">About</a>
-            <a href="testimonials.html" class="nav-button">Testimonials</a>
-            <a href="contact.html" class="nav-button">Contact</a>
+             <a href="contact.html" class="nav-button">Contact</a>
+             <a href="reservation.html" class="nav-button">Reservation</a> 
+             <a href="testimonials.html" class="nav-button">Testimonials</a>
+           
             
-        </div></nav></header>
+        </div></nav>
+    </header>
         
-        <main class="testimonial-container">
-           <h1 class="testimonial-title">What Our Customers Say</h1>
-
-    <div class="testimonials-grid">
-
-        <div class="testimonial-card">
-            <p class="testimonial-text">
-                “The fasting foods here are amazing! Specially the shiro and misir were perfectly seasoned.”
-            </p>
-            <h4 class="testimonial-name">– Hana G.</h4>
+     <main class="testimonial-container">
+        <h1 class="testimonial-title">What Our Customers Say</h1>
+        <div class="slider-wrapper">
+    <button class="prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+    
+    <div class="testimonials-slider">
+        <div class="testimonial-card active">
+            <p class="testimonial-text">“The fasting foods here are amazing! Specially the shiro and misir were perfectly seasoned.”</p>
+            <p class="customer-name">– Hana G.</p>
         </div>
 
         <div class="testimonial-card">
-            <p class="testimonial-text">
-                “Authentic Ethiopian taste! I didn't expect to find suf fitfit in a restaurant.That caught me offguard!!”
-            </p>
-            <h4 class="testimonial-name">– Samuel T.</h4>
+            <p class="testimonial-text">“Authentic Ethiopian taste! I didn't expect to find suf fitfit in a restaurant.That caught me offguard!!”</p>
+            <p class="customer-name">– Samuel T.</p>
         </div>
 
         <div class="testimonial-card">
-            <p class="testimonial-text">
-                “Great customer service and delicious non-fasting dishes. My favorite is tibs!”
-            </p>
-            <h4 class="testimonial-name">– Bethlehem A.</h4>
+            <p class="testimonial-text">“Great customer service and delicious non-fasting dishes. My favorite is tibs!”</p>
+            <p class="customer-name">– Bethlehem A.</p>
         </div>
 
         <div class="testimonial-card">
-            <p class="testimonial-text">
-                “The ambience feels like home. I love bringing my friends here.”
-            </p>
-            <h4 class="testimonial-name">– Daniel M.</h4>
+            <p class="testimonial-text">“The ambience feels like home. I love bringing my friends here.”</p>
+            <p class="customer-name">– Daniel M.</p>
         </div>
 
         <div class="testimonial-card">
-            <p class="testimonial-text">
-                “Their tea and snacks are wonderful. Best place to relax in Addis!”
-            </p>
-            <h4 class="testimonial-name">– Leila K.</h4>
+            <p class="testimonial-text">“Their tea and snacks are wonderful. Best place to relax in Addis!”</p>
+            <p class="customer-name">– Leila K.</p>
         </div>
 
         <div class="testimonial-card">
-            <p class="testimonial-text">
-                “Excellent food and very clean place. Will definitely visit again.”
-            </p>
-            <h4 class="testimonial-name">– Michael B.</h4>
+            <p class="testimonial-text">“Excellent food and very clean place. Will definitely visit again.”</p>
+            <p class="customer-name">– Michael B.</p>
         </div>
 
         <div class="testimonial-card">
-            <p class="testimonial-text">
-                “The chef knows real Ethiopian flavors! Adey is a gem.”
-            </p>
-            <h4 class="testimonial-name">– Rahel S.</h4>
+            <p class="testimonial-text">“The chef knows real Ethiopian flavors! Adey is a gem.”</p>
+            <p class="customer-name">– Rahel S.</p>
         </div>
 
         <div class="testimonial-card">
-            <p class="testimonial-text">
-                “Affordable prices for high-quality traditional meals. Loved it!”
-            </p>
-            <h4 class="testimonial-name">– Yared G.</h4>
+            <p class="testimonial-text">“Affordable prices for high-quality traditional meals. Loved it!”</p>
+            <p class="customer-name">– Yared G.</p>
         </div>
 
         <div class="testimonial-card">
-            <p class="testimonial-text">
-                “Perfect place for family gatherings. Everyone enjoyed the dishes.”
-            </p>
-            <h4 class="testimonial-name">– Saba M.</h4>
+            <p class="testimonial-text">“Perfect place for family gatherings. Everyone enjoyed the dishes.”</p>
+            <p class="customer-name">– Saba M.</p>
         </div>
 
         <div class="testimonial-card">
-            <p class="testimonial-text">
-                “Best traditional restaurant in Addis! The experience is unforgettable.”
-            </p>
-            <h4 class="testimonial-name">– Abel F.</h4>
+            <p class="testimonial-text">“Best traditional restaurant in Addis! The experience is unforgettable.”</p>
+            <p class="customer-name">– Abel F.</p>
         </div>
-
     </div>
+     <button class="next-btn" onclick="moveSlide(1)">&#10095;</button>
+     <div class="dots-container" id="dots-container"></div>
+</div>
+    
         </main>
 
         <footer>
@@ -132,10 +120,9 @@
         </div>
 
     </div>
-    ©2025 AdeyRestaurant. All rights reserved.
+</div>
+<div class="final-section">©2025 AdeyRestaurant. All rights reserved. <br>
+<button id="backToTop" class="hidden"> Back to top ↑</button></div>
         </footer>
-
-
-
     </body>
 </html>

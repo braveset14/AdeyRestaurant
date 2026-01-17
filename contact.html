@@ -6,6 +6,7 @@
     <title>Adey Restaurant - Contact</title>
     <link rel="icon" href="image/Gemini_Generated_Image_12h9zs12h9zs12h9.png" type="image/png">
     <link rel="stylesheet" href="style.css">
+     <script src="script.js" defer></script>
 </head>
 <body class="contact-bg">
     <header>
@@ -15,6 +16,7 @@
             <a href="menu.html" class="nav-button">Menu</a>
             <a href="about.html" class="nav-button">About</a>
             <a href="contact.html" class="nav-button">Contact</a>
+            <a href="testimonials.html" class="nav-button">Testimonials</a>
             <a href="testimonials.html" class="nav-button">Testimonials</a>
         </div></nav>
     </header>
@@ -46,6 +48,27 @@
                     <img src="https://static.vecteezy.com/system/resources/previews/006/693/634/original/tik-tok-flat-icon-template-black-color-editable-tik-tok-flat-icon-symbol-flat-illustration-for-graphic-and-web-design-free-vector.jpg" alt="Tiktok">TikTok: @adey_addis</p>
                 </div>
             </div>
+            <div class="contact-form-section">
+                <h3>Send us a message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                        <span class="error-msg" id="nameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Your Email" required>
+                        <span class="error-msg" id="emailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" placeholder="How can we help you?" rows="5" required></textarea>
+                        <span class="error-msg" id="messageError"></span>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                <div id="formSuccess" class="hidden">Thank you! Your message has been sent.</div>
+            </div>
+
+
         </div>
     </div>
     <footer>
@@ -82,7 +105,9 @@
             </nav>
         </div>
     </div>
-       ©2025 AdeyRestaurant. All rights reserved.
+       <div class="final-section">©2025 AdeyRestaurant. All rights reserved. <br>
+       <button id="backToTop" class="hidden"> Back to top ↑</button></div>
     </footer>
+
 </body>
 </html>
