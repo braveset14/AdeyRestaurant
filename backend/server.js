@@ -1,6 +1,7 @@
 const express=require('express');
 const mongoose = require('mongoose');
 const cors=require('cors');
+const nodemailer=require('nodemailer');
 require('dotenv').config();
 
 const PORT=process.env.PORT || 5000;
@@ -16,7 +17,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 app.post('/api/reservations',async(req,res)=>{
     try{
-      const { name, guests, date, time } = req.body;
+      const { name,email, guests, date, time } = req.body;
       const MAX_SEATS=80;
       const requestedSeats=Number(guests);
 
@@ -38,13 +39,13 @@ app.post('/api/reservations',async(req,res)=>{
       : 0;
 
       console.log(`Current seats for ${date} at ${time}: ${currentBookedSeats}`)
-      
+
       if(currentBookedSeats + requestedSeats > MAX_SEATS){
         const available = MAX_SEATS - currentBookedSeats;
         return res.status(400).json({error: `Sorry, we only have ${available} seats left for this time. Please try a smaller group or a different time.` 
       });
       }
-      const newReservation = new Reservation({ name, guests, date, time });
+      const newReservation = new Reservation({ name,email, guests, date, time });
       await newReservation.save();
       res.status(201).json({ message: "Reservation confirmed!" });
     } catch(error){
@@ -55,7 +56,68 @@ app.post('/api/reservations',async(req,res)=>{
 app.get('/',(req,res)=>{
     res.send("Adey restaurant backend is running ...");
 });
+app.get('/api/admin/reservations',async (req,res)=>{
+    try {
+        console.log("Admin is requesting all reservations...");
+        const allReservations = await Reservation.find().sort({ date: -1 });
+        res.json(allReservations);
+      } catch (error) {
+        res.status(500).json({ error: "Failed to fetch reservations for admin." });
+      }
+});
+app.delete('/api/admin/reservations/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedReservation = await Reservation.findByIdAndDelete(id);
 
+        if (!deletedReservation) {
+            return res.status(404).json({ message: "Reservation not found" });
+        }
+
+        res.json({ message: "Reservation deleted successfully!" });
+    } catch (error) {
+        console.error("Delete Error:", error);
+        res.status(500).json({ error: "Failed to delete reservation." });
+    }
+});
+
+const transporter=nodemailer.createTransport({
+    service:'gmail',
+    auth:{
+        user:process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
+
+app.post('/api/reservations/forgot-info', async (req, res) => {
+    try {
+      const { email } = req.body;
+      const reservations = await Reservation.find({ email: email });
+  
+      if (reservations.length === 0) {
+        return res.status(404).json({ message: "No reservation found for this email." });
+      }
+  
+      // Format the email content
+      const bookingDetails = reservations.map(res => 
+        `Date: ${res.date}, Time: ${res.time}, Guests: ${res.guests}`
+      ).join('\n');
+  
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'Your Adey Restaurant Reservation Details',
+        text: `Hello! Here are your booking details:\n\n${bookingDetails}\n\nSee you soon!`
+      };
+  
+      await transporter.sendMail(mailOptions);
+      res.json({ message: "Reservation found! Details have been sent to your email." });
+  
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Server error." });
+    }
+  });
 app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}.`);
 });

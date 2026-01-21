@@ -7,6 +7,7 @@ import Testimonials from "./pages/Testimonials";
 import Reservation from "./pages/Reservation";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import AdminDashboard from "./pages/AdminDashboard";
 function App() {
   
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/reservation" element={<Reservation />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
+        <Route path="/adey-admin-portal-2026" element={<AdminDashboard />} />
        </Routes>
        </div>
        <Footer />

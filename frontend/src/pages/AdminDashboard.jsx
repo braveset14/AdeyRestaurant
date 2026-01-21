@@ -1,0 +1,102 @@
+import React, { useEffect, useState } from 'react';
+
+function AdminDashboard() {
+    const [reservations, setReservations] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const password = prompt("Enter Admin Password:");
+        if (password !== "Adey123") {
+            window.location.href = "/"; // Send them back to home if wrong
+        }
+    }, []);
+    useEffect(() => {
+        fetch('http://localhost:5000/api/admin/reservations')
+            .then(res => res.json())
+            .then(data => {
+                setReservations(data);
+                setLoading(false);
+            })
+            .catch(err => console.error(err));
+    }, []);
+
+    if (loading) return <div className="admin-container"><h1>Loading Reservations...</h1></div>;
+    const handleDelete = async (id) => {
+        if (window.confirm("Are you sure you want to delete this reservation?")) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/admin/reservations/${id}`, {
+                    method: 'DELETE',
+                });
+    
+                if (response.ok) {
+                    setReservations(reservations.filter(res => res._id !== id));
+                    alert("Deleted successfully");
+                } else {
+                    alert("Failed to delete.");
+                }
+            } catch (err) {
+                console.error("Delete error:", err);
+            }
+        }
+    };
+    const totalSeatsBooked = reservations.reduce((sum, res) => sum + Number(res.guests), 0);
+    return (
+        <div className='admin-bg'>
+        <div className="admin-container" style={{ padding: '40px', color: 'white' }}>
+            <h1>Admin Dashboard - All Bookings</h1>
+            <div style={{ 
+                display: 'flex', 
+                gap: '20px', 
+                marginBottom: '30px', 
+                background: '#333', 
+                padding: '20px', 
+                borderRadius: '10px',
+                borderLeft: '5px solid gold' 
+            }}>
+        <div>
+        <h2 style={{ margin: 0, color: 'gold' }}>{totalSeatsBooked}</h2>
+        <p style={{ margin: 0 }}>Total Seats Booked</p>
+         </div>
+        <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
+        <h2 style={{ margin: 0, color: '#4caf50' }}>{reservations.length}</h2>
+        <p style={{ margin: 0 }}>Total Parties/Groups</p>
+         </div>
+        </div>
+            <table style={{ width: '100%', marginTop: '20px', borderCollapse: 'collapse'}}>
+                <thead>
+                    <tr style={{ borderBottom: '2px solid gold', textAlign: 'left', color:'black'}}>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th style={{color:'black'}}>Date</th>
+                        <th>Time</th>
+                        <th>Guests</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {reservations.map(res => (
+                        <tr key={res._id} style={{ borderBottom: '1px solid #444' }}>
+                            <td style={{color:'black'}}>{res.name}</td>
+                            <td style={{color:'black'}}>{res.email}</td>
+                            <td style={{color:'black'}}>{res.date}</td>
+                            <td style={{color:'black'}}>{res.time}</td>
+                            <td style={{color:'black'}}>{res.guests}</td>
+                            <td>
+                                   <button 
+                                       onClick={() => handleDelete(res._id)} 
+                                       style={{ 
+                                            backgroundColor: 'grey', 
+                                             color: 'white', 
+                                             border: 'none', 
+                                             padding: '5px 10px', 
+                                             borderRadius: '4px', 
+                                             cursor: 'pointer' 
+                                        }}> Delete</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div></div>
+    );
+}
+
+export default AdminDashboard;

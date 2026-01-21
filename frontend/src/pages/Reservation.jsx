@@ -3,6 +3,7 @@ import React, {use, useState} from 'react';
 function Reservation(){
     const[formData,setFormData]=useState({
         name: '',
+        email:'',
         guests: 1,
         date: '',
         time: ''
@@ -35,7 +36,7 @@ function Reservation(){
             if (response.ok) {
                 setStatus(`Success! Table for ${formData.guests} confirmed for ${formData.name}.`);
                 // Clear the form
-                setFormData({ name: '', guests: 1, date: '', time: '' });
+                setFormData({ name: '',email:'', guests: 1, date: '', time: '' });
             } else {
                 setStatus(data.error || 'Something went wrong. Please try again.');
             }
@@ -48,6 +49,23 @@ function Reservation(){
         }
     };
 
+    const [checkEmail, setCheckEmail] = useState('');
+    const [checkStatus, setCheckStatus] = useState('');
+
+    const handleCheckReservation = async () => {
+        setCheckStatus('Searching...');
+        try {
+            const response = await fetch('http://localhost:5000/api/reservations/forgot-info', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: checkEmail }),
+            });
+            const data = await response.json();
+            setCheckStatus(data.message || data.error);
+        } catch (err) {
+            setCheckStatus('Error connecting to server.');
+        }
+    };
     return(
         <div className="reservation-bg">
         <div className="reservation-container ">
@@ -58,6 +76,16 @@ function Reservation(){
                     <input 
                         type="text" id="name" placeholder="Full Name" 
                         value={formData.name} onChange={handleChange} required 
+                    />
+                </div>
+                <div className="form-group">
+                    <input 
+                       type="email" 
+                       id="email" 
+                       placeholder="Email Address" 
+                       value={formData.email} 
+                       onChange={handleChange} 
+                       required 
                     />
                 </div>
                 <div className="form-group">
@@ -85,6 +113,17 @@ function Reservation(){
             </form>
 
             {status && <div id="resMessage" style={{marginTop: '20px', color: '#fff'}}>{status}</div>}
+            <div className="check-reservation-box" style={{marginTop: '50px', padding: '20px', background: '#222', borderRadius: '8px'}}>
+    <h3>Forgot your booking details?</h3>
+    <input 
+        type="email" 
+        placeholder="Enter your email" 
+        value={checkEmail} 
+        onChange={(e) => setCheckEmail(e.target.value)} 
+    />
+    <button onClick={handleCheckReservation} className="submit-btn">Email Me My Details</button>
+    {checkStatus && <p style={{color: '#ffeb3b', marginTop: '10px'}}>{checkStatus}</p>}
+</div>
         </div></div>
     );
 }
