@@ -9,7 +9,7 @@ function Reservation(){
     });
 
     const [status,setStatus]=useState('');
-
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const handleChange = (e) => {
         const { id, value } = e.target;
         setFormData((prev) => ({
@@ -17,14 +17,35 @@ function Reservation(){
             [id]: value
         }));
     };
-    const handleSubmit=(e)=>{
+    const handleSubmit=async (e)=>{
         e.preventDefault();
+        setIsSubmitting(true);
         setStatus('Checking availaility for you ...');
+        try{
+            const response=await fetch('http://localhost:5000/api/reservations',{
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
-        setTimeout(()=>{
-            setStatus(`Success! Table for ${formData.guests} confirmed for ${formData.name}.`);
-            setFormData({ name: '', guests: 1, date: '', time: '' });
-        },2000);
+            const data= await response.json();
+
+            if (response.ok) {
+                setStatus(`Success! Table for ${formData.guests} confirmed for ${formData.name}.`);
+                // Clear the form
+                setFormData({ name: '', guests: 1, date: '', time: '' });
+            } else {
+                setStatus(data.error || 'Something went wrong. Please try again.');
+            }
+
+        }catch(error){
+            console.error('Error:', error);
+            setStatus('Server error. Please check if your backend is running on port 5000.');
+        }finally {
+            setIsSubmitting(false);
+        }
     };
 
     return(
@@ -41,7 +62,7 @@ function Reservation(){
                 </div>
                 <div className="form-group">
                     <input 
-                        type="number" id="guests" placeholder="Guests" min="1" max="10" 
+                        type="number" id="guests" placeholder="Guests" min="1" max="80" 
                         value={formData.guests} onChange={handleChange} required 
                     />
                 </div>
