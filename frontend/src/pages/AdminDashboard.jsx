@@ -3,10 +3,18 @@ import React, { useEffect, useState } from 'react';
 function AdminDashboard() {
     const [reservations, setReservations] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [showForm, setShowForm] = useState(false);
+    const [adminForm, setAdminForm] = useState({
+        name: '', email: '', guests: 1, date: '', time: ''
+    });
+    const hasPrompted = React.useRef(false);
     useEffect(() => {
-        const password = prompt("Enter Admin Password:");
-        if (password !== "Adey123") {
-            window.location.href = "/"; // Send them back to home if wrong
+        if (!hasPrompted.current) {
+            const password = prompt("Enter Admin Password:");
+            if (password !== "Adey123") {
+                window.location.href = "/";
+            }
+            hasPrompted.current = true; // Mark as done
         }
     }, []);
     useEffect(() => {
@@ -38,11 +46,61 @@ function AdminDashboard() {
             }
         }
     };
+    
+    const handleAdminSubmit=async(e)=>{
+        e.preventDefault();
+        try{
+            const response = await fetch('http://localhost:5000/api/reservations', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(adminForm),
+            });
+            const data = await response.json();
+    
+            if (response.ok) {
+                alert("Reservation added manually!");
+                const resUpdate = await fetch('http://localhost:5000/api/admin/reservations');
+                const updatedData = await resUpdate.json();
+                setReservations(updatedData);
+                setShowForm(false);
+            } else {
+                alert(data.error);
+            }
+        } catch(err){
+            console.error("Admin post error:", err);
+        }
+    }
     const totalSeatsBooked = reservations.reduce((sum, res) => sum + Number(res.guests), 0);
     return (
         <div className='admin-bg'>
         <div className="admin-container" style={{ padding: '40px', color: 'white' }}>
             <h1>Admin Dashboard - All Bookings</h1>
+            <button onClick={() => setShowForm(!showForm)}>
+                     {showForm ? "Close Form" : "+ Add Manual Booking"}
+            </button>
+            {showForm && (
+            <div style={{ background: '#222', padding: '20px', borderRadius: '10px', marginBottom: '30px' }}>
+                 <h3>Add Manual Reservation</h3>
+                 <form onSubmit={handleAdminSubmit} style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+                    <input type="text" placeholder="Name" required 
+                        onChange={(e) => setAdminForm({...adminForm, name: e.target.value})} />
+                    <input type="email" placeholder="Email" required 
+                        onChange={(e) => setAdminForm({...adminForm, email: e.target.value})} />
+                    <input type="number" placeholder="Guests" min="1" required 
+                        onChange={(e) => setAdminForm({...adminForm, guests: e.target.value})} />
+                    <input type="date" required 
+                        onChange={(e) => setAdminForm({...adminForm, date: e.target.value})} />
+                    <select required onChange={(e) => setAdminForm({...adminForm, time: e.target.value})}>
+                        <option value="">Time</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="18:00">06:00 PM</option>
+                        <option value="20:00">08:00 PM</option>
+                    </select>
+                    <button type="submit" style={{ background: 'gold', color: 'black', fontWeight: 'bold' }}>
+                        Add Booking
+                    </button>
+                </form>
+            </div>)}
             <div style={{ 
                 display: 'flex', 
                 gap: '20px', 
