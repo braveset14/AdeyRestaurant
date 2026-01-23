@@ -1,4 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
+import '../pages/styles/Testimonials.css';
 
 const testimonialData = [
     {
