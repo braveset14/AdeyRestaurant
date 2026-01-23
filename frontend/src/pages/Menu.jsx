@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MenuCard from '../components/MenuCard';
+import '../pages/styles/Menu.css';
 
 const menuData = [
   // NON-FASTING
