@@ -1,0 +1,103 @@
+/* PAGE BACKGROUND */
+.reservation-bg {
+  background-color: #fafafa;
+  padding: 4rem 6%;
+  min-height: 100vh;
+  font-family: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* CONTAINER */
+.reservation-container {
+  background-color: #1f1f1f;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  color: #fff;
+}
+
+/* TITLE */
+.reservation-title {
+  display: inline-block;
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: #f59e0b;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0.6rem 1.8rem;
+  border-radius: 40px;
+  backdrop-filter: blur(4px);
+  margin: 0 auto 2rem auto;
+  text-align: center;
+}
+
+
+/* FORM GROUP */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+/* INPUTS & SELECT */
+.form-group input,
+.form-group select {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background-color: #2b2b2b;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+}
+
+/* BUTTON */
+.submit-btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  border: none;
+  background-color: #f59e0b;
+  color: #1f1f1f;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.submit-btn:hover,
+.submit-btn:focus {
+  background-color: #e58e0a;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.submit-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* STATUS MESSAGE */
+#resMessage {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 1rem;
+  color: #f9f9f9;
+}
+
+/* RESPONSIVE */
+@media (max-width: 500px) {
+  .reservation-container {
+    padding: 2rem 1rem;
+  }
+}

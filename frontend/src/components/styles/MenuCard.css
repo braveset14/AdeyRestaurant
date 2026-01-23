@@ -1,0 +1,78 @@
+.food {
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.food img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.food h3 {
+  font-size: 1.15rem;
+  color: #1f1f1f;
+  margin: 0.5rem 0 0.2rem 0;
+}
+
+.food p {
+  font-size: 1rem;
+  color: #444;
+  margin: 0;
+}
+
+/* ORDER BUTTON */
+.food button {
+  background-color: #f59e0b; /* Ethiopian gold */
+  color: #1f1f1f;
+  border: none;
+  padding: 0.65rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.food button:hover,
+.food button:focus {
+  background-color: #e58e0a;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+/* ACCESSIBLE FOCUS */
+.food button:focus-visible {
+  outline: 2px solid #1f1f1f;
+  outline-offset: 2px;
+}
+
+/* CARD HOVER EFFECT */
+.food:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .food img {
+    height: 150px;
+  }
+
+  .food h3 {
+    font-size: 1rem;
+  }
+
+  .food p {
+    font-size: 0.95rem;
+  }
+}

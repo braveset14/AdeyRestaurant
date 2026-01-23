@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
+import '../components/styles/Header.css'
+import logo from '../assets/Gemini_Generated_Image_12h9zs12h9zs12h9.png'; 
 
 function Header(){
     return(
         <header className="header">
       <nav className="nav">
         {/* Replace your local image path with an imported one later if needed */}
-        <img 
-          src="image/Gemini_Generated_Image_12h9zs12h9zs12h9.png" 
+           <img 
+          src={logo} 
           alt="Adey Logo" 
         />
         

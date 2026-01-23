@@ -1,0 +1,79 @@
+.header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* NAV CONTAINER */
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.9rem 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.nav img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* LINKS CONTAINER */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+/* NAV BUTTONS — ACCESSIBLE & CLEAN */
+.nav-button {
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #1f1f1f; /* dark text */
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  background-color: #ffffff; /* white background to remove purple */
+  border: none; /* remove any default border */
+  transition: background-color 0.2s ease, color 0.2s ease;
+  outline: none; /* remove default browser outline */
+}
+
+/* HOVER + FOCUS (gold accessible) */
+.nav-button:hover,
+.nav-button:focus {
+  background-color: #f59e0b; /* accessible gold */
+  color: #1f1f1f;
+  outline: none;
+}
+
+/* ACTIVE PAGE (optional) */
+.nav-button.active {
+  background-color: #f59e0b;
+  color: #1f1f1f;
+}
+
+/* Remove any lingering purple focus rings in Chrome */
+.nav-button:focus-visible {
+  outline: 2px solid #1f1f1f; /* subtle but visible */
+  outline-offset: 2px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+}

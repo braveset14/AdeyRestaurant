@@ -1,0 +1,124 @@
+/* PAGE BACKGROUND */
+.menu-bg {
+  background-color: #fafafa;
+  padding: 4rem 6%;
+  min-height: 100vh;
+  font-family: inherit;
+}
+
+.menu-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* TITLE */
+.menu-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #f59e0b; /* orange text like Contact */
+  margin-bottom: 2.5rem;
+  text-align: center;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.9); /* white bubble */
+  padding: 0.6rem 1.8rem;
+  border-radius: 40px;
+  backdrop-filter: blur(4px);
+}
+
+/* SEARCH BAR */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.menu-search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-search-input:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
+}
+
+/* MENU NAV TABS */
+.menu-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.nav-link {
+  background-color: #ffffff;
+  color: #1f1f1f;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  background-color: #f59e0b;
+  color: #1f1f1f;
+  outline: none;
+}
+
+.nav-link.active {
+  background-color: #f59e0b;
+  color: #1f1f1f;
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid #1f1f1f;
+  outline-offset: 2px;
+}
+
+/* FOOD SECTION */
+.foods {
+  margin-top: 1.5rem;
+}
+
+.type {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #f59e0b; /* orange text */
+  margin: 0 auto 1.8rem;
+  text-align: center;
+
+  background-color: #ffffff; /* bubble box */
+  padding: 0.4rem 1.2rem;
+  border-radius: 5px; /* 5 corner radius */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+
+/* GRID CONTAINER FOR CARDS */
+.containers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  justify-content: center;   /* centers rows */
+  justify-items: center;     /* centers cards */
+}
+
+
+/* NO RESULTS MESSAGE */
+.containers p {
+  grid-column: 1/-1;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #ffefc1;
+}
