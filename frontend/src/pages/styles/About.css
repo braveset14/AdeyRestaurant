@@ -1,0 +1,77 @@
+.about-bg {
+  background-color: #fafafa;
+  padding: 4rem 6%;
+  min-height: 100vh;
+}
+
+
+
+/* TITLE */
+.about-title {
+  display: inline-block;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #f59e0b;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0.6rem 1.8rem;
+  border-radius: 40px;
+  backdrop-filter: blur(4px);
+  margin-bottom: 2rem;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .about-title {
+    font-size: 2rem;
+    padding: 0.5rem 1.5rem;
+  }
+}
+
+
+/* TEXT CONTENT */
+.infor {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 3rem;
+}
+
+.infor strong {
+  color: #1f1f1f;
+}
+
+/* OPENING HOURS */
+.open {
+  background-color: #fff7ed;
+  padding: 1.8rem 2rem;
+  border-radius: 10px;
+  border-left: 5px solid #f59e0b;
+}
+
+.open-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1f1f1f;
+}
+
+.days p {
+  font-size: 0.95rem;
+  margin: 0.4rem 0;
+  color: #333;
+}
+
+.days strong {
+  color: #1f1f1f;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .about-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .about-title {
+    font-size: 2rem;
+  }
+}
