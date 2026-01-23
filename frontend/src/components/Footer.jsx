@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom';
+import '../components/styles/Footer.css'
+import logo from '../assets/Gemini_Generated_Image_12h9zs12h9zs12h9.png'; 
 
 function Footer() {
   return (
     <footer>
       <div className="footer-section footer-logo">
         <img 
-          style={{ width: '70px', height: '70px' }} 
-          src="image/Gemini_Generated_Image_12h9zs12h9zs12h9.png" 
-          alt="Icon" 
+          style={{ width: '50px', height: '50px' }} 
+          src={logo} 
+          alt="Adey Logo" 
         />
         <div>
           <h3>Adey restaurant</h3>
