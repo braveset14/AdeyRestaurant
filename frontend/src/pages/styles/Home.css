@@ -1,0 +1,126 @@
+.home-container {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #1f1f1f;
+}
+
+/* HERO SECTION */
+.hero-section {
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    ),
+    url('../../assets/Injera_with_eight_kinds_of_stew.jpg') center/cover no-repeat;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding: 0 6%;
+}
+
+.hero-content {
+  max-width: 520px;
+  color: #fff;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.orange-text {
+  color: #f59e0b;
+}
+
+.hero-content p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+}
+
+/* BUTTONS */
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 0.75rem 1.6rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.primary-btn {
+  background-color: #f59e0b;
+  color: #1f1f1f;
+}
+
+.primary-btn:hover {
+  background-color: #e58e0a;
+}
+
+.secondary-btn {
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+.secondary-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* FEATURED SECTION */
+.featured-section {
+  padding: 4rem 6%;
+  background-color: #fafafa;
+}
+
+.orange-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f59e0b;
+  margin-bottom: 2rem;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.featured-item {
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.featured-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.featured-item h3 {
+  font-size: 1.2rem;
+  margin: 1rem;
+}
+
+.featured-item p {
+  font-size: 0.95rem;
+  margin: 0 1rem 1.5rem;
+  color: #555;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-section {
+    min-height: 70vh;
+  }
+}
