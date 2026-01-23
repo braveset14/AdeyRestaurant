@@ -1,3 +1,5 @@
+import '../components/styles/MenuCard.css'
+
 function MenuCard({ item }) {
     return (
       <div className="food">
