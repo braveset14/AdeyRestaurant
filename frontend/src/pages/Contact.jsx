@@ -14,16 +14,31 @@ function Contact(){
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
-const handleSubmit=(e)=>{
+const handleSubmit=async(e)=>{
   e.preventDefault();
     setIsSubmitting(true);
     setStatus('Sending your message...');
 
-    setTimeout(() => {
-      setStatus('Message sent successfully! We will get back to you soon.');
-      setFormData({ name: '', email: '', message: '' });
+    try {
+      const response = await fetch('http://localhost:5000/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+          setStatus('Message sent successfully! We will get back to you soon.');
+          setFormData({ name: '', email: '', message: '' });
+      } else {
+          setStatus('Something went wrong. Please try again.');
+      }
+  } catch (error) {
+      setStatus('Error connecting to the server.');
+  } finally {
       setIsSubmitting(false);
-    }, 2000);
+  }
  };
  return (
     <div className="contact-bg">

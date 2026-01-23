@@ -2,6 +2,7 @@ const express=require('express');
 const mongoose = require('mongoose');
 const cors=require('cors');
 const nodemailer=require('nodemailer');
+const Message=require('./models/Message');
 require('dotenv').config();
 
 const PORT=process.env.PORT || 5000;
@@ -52,7 +53,33 @@ app.post('/api/reservations',async(req,res)=>{
         console.error("Aggregation Error:", error);
         res.status(500).json({ error: "Server error while checking capacity." });
     }
-})
+});
+app.get('/api/admin/messages', async (req, res) => {
+    const msgs = await Message.find().sort({ createdAt: -1 });
+    res.json(msgs);
+});
+app.post('/api/contact',async (req,res)=>{
+    try {
+        const { name, email, message } = req.body;
+        await Message.create({ name, email, message });
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: process.env.EMAIL_USER, 
+            replyTo: email,      
+            subject: `New Message from ${name} (Adey Contact Form)`,
+            text: `You have received a new message from your website contact form:\n\n` +
+                  `Name: ${name}\n` +
+                  `Email: ${email}\n` +
+                  `Message: ${message}`
+        };
+
+        await transporter.sendMail(mailOptions);
+        res.status(200).json({ message: "Message sent successfully!" });
+    } catch (error) {
+        console.error("Contact Form Error:", error);
+        res.status(500).json({ error: "Failed to send message." });
+    }
+});
 app.get('/',(req,res)=>{
     res.send("Adey restaurant backend is running ...");
 });

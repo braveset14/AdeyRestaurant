@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 function AdminDashboard() {
+    const [messages,setMessages]=useState([]);
     const [reservations, setReservations] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showForm, setShowForm] = useState(false);
@@ -25,6 +26,11 @@ function AdminDashboard() {
                 setLoading(false);
             })
             .catch(err => console.error(err));
+    }, []);
+    useEffect(() => {
+        fetch('http://localhost:5000/api/admin/messages')
+            .then(res => res.json())
+            .then(data => setMessages(data));
     }, []);
 
     if (loading) return <div className="admin-container"><h1>Loading Reservations...</h1></div>;
@@ -118,6 +124,9 @@ function AdminDashboard() {
         <h2 style={{ margin: 0, color: '#4caf50' }}>{reservations.length}</h2>
         <p style={{ margin: 0 }}>Total Parties/Groups</p>
          </div>
+        </div>
+        <div style={{ background: '#d32f2f', padding: '10px', borderRadius: '5px' }}>
+          <h3 style={{ margin: 0 }}>{messages.length} New Messages</h3>
         </div>
             <table style={{ width: '100%', marginTop: '20px', borderCollapse: 'collapse'}}>
                 <thead>
