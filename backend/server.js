@@ -64,10 +64,7 @@ app.get('/api/admin/messages', async (req, res) => {
 });
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true, // Use true for port 465
+  service: "gmail", 
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
@@ -131,34 +128,45 @@ app.delete('/api/admin/reservations/:id', async (req, res) => {
 
 
 app.post('/api/reservations/forgot-info', async (req, res) => {
-    try {
+  try {
       const { email } = req.body;
-      const reservations = await Reservation.find({ email: email });
-  
-      if (reservations.length === 0) {
-        return res.status(404).json({ message: "No reservation found for this email." });
+      const reservations = await Reservation.find({ email: email.toLowerCase().trim() });
+
+      if (!reservations || reservations.length === 0) {
+          return res.status(404).json({ message: "No reservations found for this email." });
       }
-  
-      // Format the email content
-      const bookingDetails = reservations.map(res => 
-        `Date: ${res.date}, Time: ${res.time}, Guests: ${res.guests}`
+
+      // 1. Respond to user IMMEDIATELY (No loading spinning forever)
+      res.status(200).json({ message: "Success! Check your inbox." });
+
+      // 2. Format the email
+      const bookingList = reservations.map(r => 
+          `• ${r.date} at ${r.time} (${r.guests} guests)`
       ).join('\n');
-  
+
       const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: email,
-        subject: 'Your Adey Restaurant Reservation Details',
-        text: `Hello! Here are your booking details:\n\n${bookingDetails}\n\nSee you soon!`
+          from: process.env.EMAIL_USER,
+          to: email, // This will now work for ANY email address
+          subject: 'Your Adey Restaurant Bookings',
+          text: `Hello! Here are your reservation details:\n\n${bookingList}\n\nSee you soon!`
       };
-  
-      await transporter.sendMail(mailOptions);
-      res.json({ message: "Reservation found! Details have been sent to your email." });
-  
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Server error." });
-    }
-  });
+
+      // 3. Send in background (No 'await' here)
+      transporter.sendMail(mailOptions, (err, info) => {
+          if (err) {
+              console.log("Background Email Error:", err.message);
+          } else {
+              console.log("Email sent successfully to:", email);
+          }
+      });
+
+  } catch (error) {
+      console.error("Server Error:", error);
+      if (!res.headersSent) {
+          res.status(500).json({ error: "Internal server error" });
+      }
+  }
+});
 app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}.`);
 });
