@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+const API_URL='https://adeyrestaurant.onrender.com/';
 function AdminDashboard() {
     const [messages,setMessages]=useState([]);
     const [reservations, setReservations] = useState([]);
@@ -19,7 +19,7 @@ function AdminDashboard() {
         }
     }, []);
     useEffect(() => {
-        fetch('http://localhost:5000/api/admin/reservations')
+        fetch(`${API_URL}api/admin/reservations`)
             .then(res => res.json())
             .then(data => {
                 setReservations(data);
@@ -28,7 +28,7 @@ function AdminDashboard() {
             .catch(err => console.error(err));
     }, []);
     useEffect(() => {
-        fetch('http://localhost:5000/api/admin/messages')
+        fetch(`${API_URL}api/admin/messages`)
             .then(res => res.json())
             .then(data => setMessages(data));
     }, []);
@@ -37,7 +37,7 @@ function AdminDashboard() {
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this reservation?")) {
             try {
-                const response = await fetch(`http://localhost:5000/api/admin/reservations/${id}`, {
+                const response = await fetch(`${API_URL}api/admin/reservations/${id}`, {
                     method: 'DELETE',
                 });
     
@@ -56,7 +56,7 @@ function AdminDashboard() {
     const handleAdminSubmit=async(e)=>{
         e.preventDefault();
         try{
-            const response = await fetch('http://localhost:5000/api/reservations', {
+            const response = await fetch(`${API_URL}api/reservations`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(adminForm),
@@ -65,7 +65,7 @@ function AdminDashboard() {
     
             if (response.ok) {
                 alert("Reservation added manually!");
-                const resUpdate = await fetch('http://localhost:5000/api/admin/reservations');
+                const resUpdate = await fetch(`${API_URL}api/admin/reservations`);
                 const updatedData = await resUpdate.json();
                 setReservations(updatedData);
                 setShowForm(false);

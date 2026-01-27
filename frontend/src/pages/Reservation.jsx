@@ -1,6 +1,6 @@
 import React, {use, useState} from 'react';
 import '../pages/styles/Reservation.css';
-
+const API_URL='https://adeyrestaurant.onrender.com/';
 function Reservation(){
     const[formData,setFormData]=useState({
         name: '',
@@ -24,7 +24,7 @@ function Reservation(){
         setIsSubmitting(true);
         setStatus('Checking availaility for you ...');
         try{
-            const response=await fetch('http://localhost:5000/api/reservations',{
+            const response=await fetch(`${API_URL}api/reservations`,{
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ function Reservation(){
     const handleCheckReservation = async () => {
         setCheckStatus('Searching...');
         try {
-            const response = await fetch('http://localhost:5000/api/reservations/forgot-info', {
+            const response = await fetch(`${API_URL}api/reservations/forgot-info`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: checkEmail }),
