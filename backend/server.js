@@ -66,7 +66,8 @@ app.post('/api/contact',async (req,res)=>{
     try {
         const { name, email, message } = req.body;
         await Message.create({ name, email, message });
-        const mailOptions = {
+        try{
+          const mailOptions = {
             from: process.env.EMAIL_USER,
             to: process.env.EMAIL_USER, 
             replyTo: email,      
@@ -78,6 +79,10 @@ app.post('/api/contact',async (req,res)=>{
         };
 
         await transporter.sendMail(mailOptions);
+        console.log("Email sent successfully");
+      }catch(mailError){
+        console.error("Nodemailer failed, but message was saved to DB:", mailError);
+      }
         res.status(200).json({ message: "Message sent successfully!" });
     } catch (error) {
         console.error("Contact Form Error:", error);
