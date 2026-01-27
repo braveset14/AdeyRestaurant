@@ -62,6 +62,17 @@ app.get('/api/admin/messages', async (req, res) => {
     const msgs = await Message.find().sort({ createdAt: -1 });
     res.json(msgs);
 });
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // Use true for port 465
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
 app.post('/api/contact',async (req,res)=>{
     try {
         const { name, email, message } = req.body;
@@ -118,18 +129,6 @@ app.delete('/api/admin/reservations/:id', async (req, res) => {
     }
 });
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false, // MUST be false for 587
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  },
-  tls: {
-    rejectUnauthorized: false
-  }
-});
 
 app.post('/api/reservations/forgot-info', async (req, res) => {
     try {
