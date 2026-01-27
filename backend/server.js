@@ -119,11 +119,14 @@ app.delete('/api/admin/reservations/:id', async (req, res) => {
 });
 
 const transporter=nodemailer.createTransport({
-    service:'gmail',
+    service:'smtp.gmail.com',
+    port:465,
+    secure:true,
     auth:{
         user:process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
-    }
+    },
+    connectionTimeout: 10000,
 });
 
 app.post('/api/reservations/forgot-info', async (req, res) => {
