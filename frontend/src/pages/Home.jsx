@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import homeImg from '../assets/Injera_with_eight_kinds_of_stew.jpg';
+import homeImg from '../assets/beyaynet.jpg';
 import doroWot from '../assets/download.webp'
 import '../pages/styles/Home.css';
 

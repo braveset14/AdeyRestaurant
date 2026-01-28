@@ -1,21 +1,54 @@
 import React, { useState } from 'react';
 import MenuCard from '../components/MenuCard';
 import '../pages/styles/Menu.css';
+import doro_wot from '../assets/images.jpeg';
+import tibs from '../assets/hq720.jpg'
+import kikil from '../assets/kikil.jpeg';
+import bozena from '../assets/bozena.jpeg';
+import aybe from '../assets/aybe.webp';
+import kitfo from '../assets/kitfo.jpeg';
+import sega from '../assets/sega_wot.jpeg';
 
+import beyaynet from '../assets/beyaynet.jpg';
+import dinich from '../assets/dinich.jpeg';
+import gomen from '../assets/gomen.jpeg';
+import misir from '../assets/misir.jpeg';
+import shiro from '../assets/shiro.jpeg';
+import pasta from '../assets/pasta.webp';
+import timatim from '../assets/timatim.png';
+
+import fetira from '../assets/fetira.jpeg';
+import chiko from '../assets/chiko.jpeg';
+import anebabero from '../assets/anebabero.jpeg';
+import koker from '../assets/koker.jpeg';
+import kolo from '../assets/kolo.jpeg';
+import sambusa from '../assets/sambusa.jpeg';
 const menuData = [
   // NON-FASTING
-  { id: 1, name: "Doro Wat", category: "non-fasting", price: "450 ETB", img: "image/doro_wat.jpg" },
-  { id: 2, name: "Sega Wat", category: "non-fasting", price: "380 ETB", img: "image/sega_wat.jpg" },
-  { id: 3, name: "Kitfo", category: "non-fasting", price: "500 ETB", img: "image/kitfo.jpg" },
-  
+  { id: 1, name: "Doro Wat", category: "non-fasting", price: "450 ETB",img: doro_wot },
+  { id: 2, name: "Sega Wat", category: "non-fasting", price: "380 ETB", img: sega },
+  { id: 3, name: "Kitfo", category: "non-fasting", price: "500 ETB", img: kitfo },
+  { id: 4, name: "SheklaTibs", category: "non-fasting", price: "400 ETB", img: tibs},
+  { id: 5, name: "Kikil", category: "non-fasting", price: "400 ETB", img: kikil},
+  { id: 6, name: "Bozena", category: "non-fasting", price: "400 ETB", img: bozena},
+  { id: 7, name: "Aybe", category: "non-fasting", price: "400 ETB", img: aybe},
+
   // FASTING
-  { id: 4, name: "Beyaynetu", category: "fasting", price: "300 ETB", img: "image/beyaynetu.jpg" },
-  { id: 5, name: "Misir Wat", category: "fasting", price: "200 ETB", img: "image/misir.jpg" },
-  { id: 6, name: "Shiro Wat", category: "fasting", price: "180 ETB", img: "image/shiro.jpg" },
-  
+  { id: 9, name: "Beyaynetu", category: "fasting", price: "300 ETB", img: beyaynet},
+  { id: 10, name: "Misir Wat", category: "fasting", price: "200 ETB", img: misir },
+  { id: 11, name: "Shiro Wat", category: "fasting", price: "180 ETB", img: shiro },
+  { id: 12, name: "Dinich Wat", category: "fasting", price: "500 ETB", img: dinich },
+  { id: 13, name: "Gomen", category: "fasting", price: "400 ETB", img: gomen},
+  { id: 14, name: "Pasta(yetsom)", category: "fasting", price: "400 ETB", img: pasta},
+  { id: 15, name: "Timatim", category: "fasting", price: "400 ETB", img: timatim},
+  { id: 16, name: "Aybe", category: "fasting", price: "400 ETB", img: aybe},
   //Snacks
-  { id: 7, name: "Sambusa", category: "snacks", price: "60 ETB", img: "image/sambusa.jpg" },
-  { id: 8, name: "Kolo", category: "snacks", price: "40 ETB", img: "image/kolo.jpg" }
+  { id: 17, name: "Sambusa", category: "snacks", price: "60 ETB", img: sambusa},
+  { id: 18, name: "Kolo", category: "snacks", price: "40 ETB", img:kolo },
+  { id: 19, name: "Koker", category: "snacks", price: "40 ETB", img:koker },
+  { id: 20, name: "Fetira", category: "snacks", price: "40 ETB", img:fetira },
+  { id: 21, name: "Anebabero", category: "snacks", price: "40 ETB", img:anebabero },
+  { id: 22, name: "Chiko", category: "snacks", price: "40 ETB", img:chiko}
 ];
 
 function Menu() {

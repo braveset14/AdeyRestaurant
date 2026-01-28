@@ -45,6 +45,10 @@ footer {
   line-height: 1.6;
   color: #cfcfcf;
 }
+.footer-section img{
+  align-self: center;
+ border-radius: 50%;
+}
 
 /* SOCIAL */
 .social p {

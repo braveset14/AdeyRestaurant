@@ -70,7 +70,7 @@
 
 .nav-link:hover,
 .nav-link:focus {
-  background-color: #f59e0b;
+  background-color: #dfbe85;
   color: #1f1f1f;
   outline: none;
 }
@@ -109,7 +109,7 @@
 .containers {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
+  gap: 3rem;
   justify-content: center;   /* centers rows */
   justify-items: center;     /* centers cards */
 }
