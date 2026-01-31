@@ -122,3 +122,8 @@
   font-size: 1.1rem;
   color: #ffefc1;
 }
+@media(max-width:426px){
+  .menu-nav{
+    gap:0.5rem;
+  }
+}
