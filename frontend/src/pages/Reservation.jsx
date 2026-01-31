@@ -1,6 +1,6 @@
 import React, {use, useState} from 'react';
 import '../pages/styles/Reservation.css';
-const API_URL='https://adeyrestaurant.onrender.com/';
+const API_URL="https://adeyrestaurant.onrender.com/";
 function Reservation(){
     const[formData,setFormData]=useState({
         name: '',

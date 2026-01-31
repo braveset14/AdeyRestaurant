@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import '../pages/styles/Contact.css'
-const API_URL='https://adeyrestaurant.onrender.com/';
+const API_URL="https://adeyrestaurant.onrender.com/";
 function Contact(){
     const [formData, setFormData] = useState({
         name: '',
@@ -16,7 +16,7 @@ function Contact(){
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 const handleSubmit=async(e)=>{
-  e.preventDefault();
+    e.preventDefault();
     setIsSubmitting(true);
     setStatus('Sending your message...');
 
