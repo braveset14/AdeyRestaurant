@@ -128,7 +128,7 @@ function AdminDashboard() {
         <div style={{ background: '#d32f2f', padding: '10px', borderRadius: '5px' }}>
           <h3 style={{ margin: 0 }}>{messages.length} New Messages</h3>
         </div>
-            <table style={{ width: '100%', marginTop: '20px', borderCollapse: 'collapse'}}>
+            <table style={{ width: '100%', marginTop: '20px', borderCollapse: 'collapse',background:'#dfbe85'}}>
                 <thead>
                     <tr style={{ borderBottom: '2px solid gold', textAlign: 'left', color:'black'}}>
                         <th>Name</th>
